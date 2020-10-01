@@ -10,7 +10,6 @@ import {
   SideNavMenuItem,
 } from 'carbon-components-react/lib/components/UIShell/';
 import UIShellBody from "./UIShellBody";
-
 const Fade20 = () => (
   <svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
     <path d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
@@ -21,47 +20,29 @@ const Fade20 = () => (
         10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
   </svg>
 );
-
 class UIShell extends Component {
-  header = "Garage for Cloud Catalyst";
-  menuTitle = "12 Design Pattern";
+  header = "Big Blue Widgets";
+  menuTitle = "Inventory Managment";
   menuItems = [
-    "Display Form",
-    "Validating Form",
-    "Update Form",
-    "Validating Form Wizard 1",
-    "Validating Form Wizard 2",
-    "Simple List",
-    "Table List",
-    "List to List",
-    "Linked List",
-    "Master Detail",
-    "Create, Read, Update, Delete",
-    "Search List",
-    "Search Form"
+    "Stock Items" ,
   ];
-
   constructor(props) {
     super(props);
     this.state = {
       patternName: this.menuItems[0]
     };
   }
-
   onPatternSelection = label => {
     this.setState({ patternName: label });
   };
-
   renderSideNavItems = () => {
     return this.menuItems.map(label => this.renderSideNavItem(label));
   };
-
   renderSideNavItem = label => {
     return (
       <SideNavMenuItem href="# " isActive={label === this.state.patternName ? true : false} onClick={e => this.onPatternSelection(label)}>{label}</SideNavMenuItem>
     );
   };
-
   render() {
     return (
       <div>
@@ -82,10 +63,9 @@ class UIShell extends Component {
             </SideNavMenu>
           </SideNavItems>
         </SideNav>
-        <Content id="main-content"><UIShellBody patternName={this.state.patternName} /></Content>
+        <Content id="main-content"><UIShellBody patternName={this.state.patternName} stockService={this.props.stockService} /></Content>
       </div>
     );
   }
 }
-
 export default UIShell;
